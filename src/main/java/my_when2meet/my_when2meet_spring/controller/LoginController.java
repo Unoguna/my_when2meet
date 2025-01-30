@@ -1,4 +1,4 @@
-package controller;
+package my_when2meet.my_when2meet_spring.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
