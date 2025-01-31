@@ -2,23 +2,33 @@ package my_when2meet.my_when2meet_spring.domain;
 
 public class Member {
 
-    private Long id;
-    private Long password;
+    private Long userid;
+
+    private String id;
+    private String password;
     private String name;
 
-    public Long getId(){
+    public Long getUserid(){
+        return userid;
+    }
+
+    public void setUserid(Long userid){
+        this.userid = userid;
+    }
+
+    public String getId(){
         return id;
     }
 
-    public void setId(Long id){
+    public void setId(String id){
         this.id = id;
     }
 
-    public Long getPassword(){
+    public String getPassword(){
         return password;
     }
 
-    public void setPassword(Long password){
+    public void setPassword(String password){
         this.password = password;
     }
 
