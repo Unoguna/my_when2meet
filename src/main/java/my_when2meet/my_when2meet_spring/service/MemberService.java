@@ -2,7 +2,6 @@ package my_when2meet.my_when2meet_spring.service;
 
 import my_when2meet.my_when2meet_spring.domain.Member;
 import my_when2meet.my_when2meet_spring.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +30,7 @@ public class MemberService {
                 });
     }
 
-    public List<Member> findMembers(){
+    public List<Member> findAllMembers(){
         return memberRepository.findAll();
     }
 
