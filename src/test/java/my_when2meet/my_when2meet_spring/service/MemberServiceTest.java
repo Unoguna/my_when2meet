@@ -59,4 +59,5 @@ public class MemberServiceTest {
 
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 아이디입니다.");
     }
+
 }

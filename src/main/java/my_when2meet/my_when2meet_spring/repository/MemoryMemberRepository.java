@@ -3,6 +3,7 @@ package my_when2meet.my_when2meet_spring.repository;
 import my_when2meet.my_when2meet_spring.domain.Member;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MemoryMemberRepository implements MemberRepository{
 
@@ -29,10 +30,10 @@ public class MemoryMemberRepository implements MemberRepository{
     }
 
     @Override
-    public Optional<Member> findByName(String name) {
+    public List<Member> findByName(String name) {
         return store.values().stream()
                 .filter(member -> member.getName().equals(name))
-                .findAny();
+                .collect(Collectors.toList());
     }
 
     @Override
