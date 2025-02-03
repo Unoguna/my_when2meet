@@ -13,7 +13,7 @@ public class Config {
     public MemberService memberService() {
         return new MemberService(memberRepository());
     }
-    
+
     @Bean
     public MemberRepository memberRepository() {
         return new MemoryMemberRepository();
