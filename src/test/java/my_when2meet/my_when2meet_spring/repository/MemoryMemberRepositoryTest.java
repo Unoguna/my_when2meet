@@ -28,4 +28,16 @@ public class MemoryMemberRepositoryTest {
         assertThat(result).isEqualTo(member);
     }
 
+    @Test
+    public void findById() {
+        Member member =  new Member();
+        member.setId("kim");
+        member.setName("Unoguna");
+        member.setPassword("jeongho");
+        repository.save(member);
+
+        Member result = repository.findById(member.getId()).get();
+        assertThat(result).isEqualTo(member);
+    }
+
 }

@@ -12,6 +12,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    //input이 java.class가 아니라 interface인 이유: interface를 사용하는 다양한 객체들에 사용 할 수 있게 하려고 범용성을 위해..!
     public MemberService(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }

@@ -24,7 +24,7 @@ public class MemoryMemberRepository implements MemberRepository{
     @Override
     public Optional<Member> findById(String id) {
         return store.values().stream()
-                .filter(member -> member.getName().equals(id))
+                .filter(member -> member.getId().equals(id))
                 .findAny();
     }
 
