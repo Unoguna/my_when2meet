@@ -59,6 +59,11 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
         return jdbcTemplate.query("select * from member", memberRowMapper());
     }
 
+    @Override
+    public List<Member> canLongin(String id, String password) {
+        return jdbcTemplate.query("select * from member where id = ? AND password = ?", memberRowMapper(), id, password);
+    }
+
     private RowMapper<Member> memberRowMapper() {
         return (rs, rowNum) -> {
             Member member = new Member();
