@@ -1,5 +1,6 @@
 package my_when2meet.my_when2meet_spring.controller;
 
+import jakarta.servlet.http.HttpServletResponse;
 import my_when2meet.my_when2meet_spring.domain.Member;
 import my_when2meet.my_when2meet_spring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @Controller
@@ -47,6 +50,35 @@ public class MemberController {
         return"redirect:/";
     }
 
+    @PostMapping(value="/members/login")
+    public String login(MemberForm form, HttpServletResponse response) throws IOException {
+        Member member = new Member();
+
+        member.setId(form.getId());
+        member.setPassword(form.getPassword());
+        member.setName(form.getName());
+
+        if(memberService.login(member).isEmpty()){
+            PrintWriter out = response.getWriter();
+            response.setCharacterEncoding("utf-8");
+            response.setContentType("text/html; charset=utf-8");
+            out.println("<script> alert('Wrong ID or Password');");
+            out.println("history.go(-1); </script>");
+            out.close();
+
+            return "redirect:home";
+        }
+        else{
+            PrintWriter out = response.getWriter();
+            response.setCharacterEncoding("utf-8");
+            response.setContentType("text/html; charset=utf-8");
+            out.println("<script> alert('Hello Welcome');");
+            out.println("history.go(-1); </script>");
+            out.close();
+
+            return "redirect:home";
+        }
+    }
 
 
 }

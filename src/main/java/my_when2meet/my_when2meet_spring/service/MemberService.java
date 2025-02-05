@@ -23,6 +23,10 @@ public class MemberService {
         return member.getUserid();
     }
 
+    public List<Member> login(Member member){
+        return memberRepository.canLongin(member.getId(), member.getPassword());
+    }
+
     private void validateDuplicateMember(Member member){
         memberRepository.findById(member.getId())
                 .ifPresent(m -> {

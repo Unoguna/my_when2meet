@@ -12,5 +12,6 @@ public interface MemberRepository {
     Optional<Member> findById(String id);
     List<Member> findByName(String name);
     List<Member> findAll();
+    List<Member> canLongin(String id, String password);
 
 }
