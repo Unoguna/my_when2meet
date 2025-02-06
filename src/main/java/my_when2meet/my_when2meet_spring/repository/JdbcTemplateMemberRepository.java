@@ -1,6 +1,7 @@
 package my_when2meet.my_when2meet_spring.repository;
 
 import my_when2meet.my_when2meet_spring.domain.Member;
+import my_when2meet.my_when2meet_spring.domain.Schedule;
 import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -63,6 +64,8 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
     public List<Member> canLongin(String id, String password) {
         return jdbcTemplate.query("select * from member where id = ? AND password = ?", memberRowMapper(), id, password);
     }
+
+
 
     private RowMapper<Member> memberRowMapper() {
         return (rs, rowNum) -> {

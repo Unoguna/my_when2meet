@@ -3,6 +3,7 @@ package my_when2meet.my_when2meet_spring.controller;
 
 public class MemberForm {
 
+    private Long userid;
     private String id;
     private String password;
     private String name;

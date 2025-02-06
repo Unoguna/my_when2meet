@@ -1,6 +1,7 @@
 package my_when2meet.my_when2meet_spring.repository;
 
 import my_when2meet.my_when2meet_spring.domain.Member;
+import my_when2meet.my_when2meet_spring.domain.Schedule;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,5 +14,4 @@ public interface MemberRepository {
     List<Member> findByName(String name);
     List<Member> findAll();
     List<Member> canLongin(String id, String password);
-
 }

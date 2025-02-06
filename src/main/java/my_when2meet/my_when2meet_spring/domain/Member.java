@@ -1,5 +1,7 @@
 package my_when2meet.my_when2meet_spring.domain;
 
+import java.util.ArrayList;
+
 public class Member {
 
     private Long userid;
@@ -7,6 +9,8 @@ public class Member {
     private String id;
     private String password;
     private String name;
+
+    private ArrayList<Long> scheduleIdx = new ArrayList<>();
 
     public Long getUserid(){
         return userid;
@@ -38,5 +42,13 @@ public class Member {
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public void addSchedule(Long idx){
+        scheduleIdx.add(idx);
+    }
+
+    public ArrayList<Long> getScheduleIdx(){
+        return scheduleIdx;
     }
 }

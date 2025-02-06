@@ -1,8 +1,11 @@
 package my_when2meet.my_when2meet_spring.service;
 
 import my_when2meet.my_when2meet_spring.domain.Member;
+import my_when2meet.my_when2meet_spring.domain.Schedule;
 import my_when2meet.my_when2meet_spring.repository.MemberRepository;
+import my_when2meet.my_when2meet_spring.repository.ScheduleRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,10 +14,12 @@ public class MemberService {
     //private final MemberRepository memberRepository = new MemoryMemberRepository();
 
     private final MemberRepository memberRepository;
+    private final ScheduleRepository scheduleRepository;
 
     //input이 java.class가 아니라 interface인 이유: interface를 사용하는 다양한 객체들에 사용 할 수 있게 하려고 범용성을 위해..!
-    public MemberService(MemberRepository memberRepository){
+    public MemberService(MemberRepository memberRepository, ScheduleRepository scheduleRepository){
         this.memberRepository = memberRepository;
+        this.scheduleRepository = scheduleRepository;
     }
 
     public Long join(Member member){
@@ -40,6 +45,10 @@ public class MemberService {
 
     public Optional<Member> findOne(Long userId){
         return memberRepository.findByUserId(userId);
+    }
+
+    public List<Schedule> findSchedules(ArrayList<Long> scheduleIdx){
+        return scheduleRepository.findByid(scheduleIdx);
     }
 
 }

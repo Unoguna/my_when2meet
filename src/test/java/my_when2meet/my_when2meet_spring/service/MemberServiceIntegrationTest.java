@@ -8,8 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional
@@ -50,5 +50,24 @@ public class MemberServiceIntegrationTest {
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));
 
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 아이디입니다.");
+    }
+
+    @Test
+    public void 로그인() throws Exception{
+        Member member1 = new Member();
+        member1.setId("hello");
+        member1.setPassword("hi");
+        member1.setName("kim");
+
+        //when
+        Long saveUserId = memberService.join(member1);
+
+        Member member2 = new Member();
+        member2.setId("hello");
+        member2.setPassword("hi");
+        member2.setName("kim");
+
+        assertEquals(1, memberService.login(member2).size());
+
     }
 }

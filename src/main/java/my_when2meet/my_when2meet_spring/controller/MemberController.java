@@ -2,6 +2,7 @@ package my_when2meet.my_when2meet_spring.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import my_when2meet.my_when2meet_spring.domain.Member;
+import my_when2meet.my_when2meet_spring.domain.Schedule;
 import my_when2meet.my_when2meet_spring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,7 +59,7 @@ public class MemberController {
         member.setPassword(form.getPassword());
         member.setName(form.getName());
 
-        if(memberService.login(member).isEmpty()){
+        if(memberService.login(member).isEmpty()){  //로그인 실패
             PrintWriter out = response.getWriter();
             response.setCharacterEncoding("utf-8");
             response.setContentType("text/html; charset=utf-8");
@@ -66,19 +67,12 @@ public class MemberController {
             out.println("history.go(-1); </script>");
             out.close();
 
-            return "redirect:home";
+            return "redirect:/";
         }
-        else{
-            PrintWriter out = response.getWriter();
-            response.setCharacterEncoding("utf-8");
-            response.setContentType("text/html; charset=utf-8");
-            out.println("<script> alert('Hello Welcome');");
-            out.println("history.go(-1); </script>");
-            out.close();
-
-            return "redirect:home";
+        else{   //로그인 성공
+            Member user = memberService.login(member).getFirst();
+            List <Schedule> schedules = memberService.findSchedules(member.getScheduleIdx());
+            return "schedule/mainPage";
         }
     }
-
-
 }
